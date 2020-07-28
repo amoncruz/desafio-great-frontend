@@ -12,6 +12,10 @@ import {
 import {Link} from 'react-router-dom';
 
 const Header = ({setSearchChanged,searchChanged}) => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
     
   const handleSetSearchChanged=()=>{
     if(searchChanged!==undefined){
@@ -23,8 +27,8 @@ const Header = ({setSearchChanged,searchChanged}) => {
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand ><Link to="/" className="logo">Desafio</Link></NavbarBrand>
-        <NavbarToggler />
-        <Collapse navbar>
+        <NavbarToggler onClick={toggle}/>
+        <Collapse isOpen={isOpen} navbar>
           <Nav className="mx-auto" navbar>
             <NavItem>
               <NavLink>

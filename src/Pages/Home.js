@@ -46,7 +46,7 @@ function Home({history}) {
                     <div className="icon-circle-initialpage">
                         <BsPerson color="#667eea" size="2.5em" />
                     </div>
-                    <div className="box-right">
+                    <div className="box-right-card">
                         <div className="card-title-custom">
                         {user.nome}
                         </div>

@@ -10,7 +10,6 @@ const Details = ({match}) =>{
     let { cpf } = match.params;
     const[user,setUser] = useState({});
     const[search,setSearch] = useState();
-    const[validatedCpf,setValidatedCpf] = useState(true);
 
     const handleSearch=()=>{
         if(search!==undefined && search!==""){
@@ -20,23 +19,10 @@ const Details = ({match}) =>{
         }      
     }
 
-    const handleCPF = (cpfS) => {
-
-        if(!validate(cpfS)){
-            setValidatedCpf(false);
-        }else{
-            if(validate(cpfS)=== true && validatedCpf===false){
-                setValidatedCpf(true);
-                
-                setSearch(cpfS)
-            }
-        }
-    }
-
     useEffect(()=>{
-
         if(cpf!==undefined && parseInt(cpf)!==0){
             Axios.get(`http://localhost:5000/api/usuarios/${cpf}`).then(res=>{
+                console.log(res.data);
                 setUser(res.data);
             })
         }
@@ -50,12 +36,11 @@ const Details = ({match}) =>{
                 <Button className="back-btn">Voltar</Button>
    </div>*/}
             <div className="box-search">
-                <Input type="text" name="serach" className="input-search" placeholder="Consultar por CPF" onChange={(e)=>{handleCPF(e.target.value)}} />
+                <Input type="text" name="serach" className="input-search" placeholder="Consultar por CPF" onChange={(e)=>{setSearch(e.target.value)}} />
                 <BsSearch size="1.5em" onClick={()=>{handleSearch()}}/>
-                {!validatedCpf && (<p>CPF inválido!</p>)}
             </div>
             <Container>
-                {(cpf!==undefined && parseInt(cpf)!==0) || search!==undefined &&(
+                {((cpf!==undefined && parseInt(cpf)!==0) || Object.keys(user).length>0) &&(
                          <div className="card-custom-details">
                          <div className="inline-box">
                          <div className="icon-circle">

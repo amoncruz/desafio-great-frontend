@@ -88,6 +88,14 @@
     margin-left: 2rem;
 }
 
+.box-right-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
 .btn{
     background-color: #667eea !important;
     color:#ffff !important;
@@ -158,4 +166,19 @@ a .logo:hover{
 
 .inline-box p{
     margin-left: 0.2rem;
+}
+
+@media screen and (max-width: 992px) {
+    .card-custom-details{
+        margin:0;
+        min-width: 100%;
+    }
+
+    .box-search{
+        width:90%;
+    }
+
+    .container-form{
+        width: 80%;
+    }
 }
